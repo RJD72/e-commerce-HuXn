@@ -43,6 +43,10 @@ const loginUser = asyncHandler(async (req, res) => {
       existingUser.password
     );
 
+    if (!isPasswordValid) {
+      return res.status(401).send("Invalid password and/or email");
+    }
+
     if (isPasswordValid) {
       createToken(res, existingUser._id);
 
@@ -94,7 +98,8 @@ const updateCurrentUserProfile = asyncHandler(async (req, res) => {
     user.email = req.body.email || user.email;
 
     if (req.body.password) {
-      user.password = req.body.password;
+      const hashedPassword = await bcrypt.hash(req.body.password, 10);
+      user.password = hashedPassword;
     }
 
     const updatedUser = await user.save();
@@ -105,6 +110,9 @@ const updateCurrentUserProfile = asyncHandler(async (req, res) => {
       email: updatedUser.email,
       isAdmin: updatedUser.isAdmin,
     });
+  } else {
+    res.status(404);
+    throw new Error("User not found");
   }
 });
 
