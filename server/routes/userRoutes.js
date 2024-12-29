@@ -6,6 +6,9 @@ const {
   getAllUsers,
   getCurrentUserProfile,
   updateCurrentUserProfile,
+  deleteUser,
+  getUserById,
+  updateUserById,
 } = require("../controllers/userController.js");
 const {
   authenticate,
@@ -24,5 +27,12 @@ router
   .route("/profile")
   .get(authenticate, getCurrentUserProfile)
   .put(authenticate, updateCurrentUserProfile);
+
+// Admin routes
+router
+  .route("/:id")
+  .delete(authenticate, authorizeAdmin, deleteUser)
+  .get(authenticate, authorizeAdmin, getUserById)
+  .put(authenticate, authorizeAdmin, updateUserById);
 
 module.exports = router;
