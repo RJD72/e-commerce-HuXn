@@ -98,6 +98,12 @@ function Login() {
             </p>
           </div>
         </div>
+
+        <img
+          src="https://images.unsplash.com/photo-1533158326339-7f3cf2404354?q=80&w=1968&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt=""
+          className="h-[65rem] w-[59%] xl:block md:hidden sm:hidden rounded-lg"
+        />
       </section>
     </div>
   );
