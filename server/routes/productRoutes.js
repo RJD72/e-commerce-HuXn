@@ -27,9 +27,7 @@ router.route("/allProducts").get(getAllProducts);
 router.get("/top", getTopProducts);
 router.get("/new", getNewProducts);
 
-router
-  .route("/:id/reviews")
-  .post(authenticate, authorizeAdmin, checkId, addProductReview);
+router.route("/:id/reviews").post(authenticate, checkId, addProductReview);
 router
   .route("/:id")
   .get(getProductById)
