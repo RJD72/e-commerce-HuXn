@@ -25,7 +25,7 @@ const HeartIcon = ({ product }) => {
 
   const toggleFavorites = () => {
     if (isFavorite) {
-      dispatch(removeFromFavorites(product._id));
+      dispatch(removeFromFavorites(product));
       // Remove the product from the localStorage as well
       removeFavoriteFromLocalStorage(product._id);
     } else {

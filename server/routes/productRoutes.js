@@ -15,6 +15,7 @@ const {
   addProductReview,
   getTopProducts,
   getNewProducts,
+  filterProducts,
 } = require("../controllers/productController");
 
 router
@@ -33,5 +34,7 @@ router
   .get(getProductById)
   .put(authenticate, authorizeAdmin, formidable(), updateProduct)
   .delete(authenticate, authorizeAdmin, deleteProduct);
+
+router.route("/filtered-products").post(filterProducts);
 
 module.exports = router;

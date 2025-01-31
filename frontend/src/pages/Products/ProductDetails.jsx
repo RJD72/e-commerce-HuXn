@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import {
   useGetProductDetailsQuery,
@@ -16,13 +16,15 @@ import {
   FaStore,
 } from "react-icons/fa";
 import moment from "moment";
-import HeartIcon from "./HeartIcon";
+// import HeartIcon from "./HeartIcon.jsx.old";
 import Ratings from "./Ratings";
 import ProductTabs from "./ProductTabs";
+import { addToCart } from "../../redux/features/cart/cartSlice";
 
 const ProductDetails = () => {
   const { id: productId } = useParams();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [qty, setQty] = useState(1);
   const [rating, setRating] = useState(0);
@@ -39,7 +41,10 @@ const ProductDetails = () => {
   const [createReview, { isLoading: loadingProductReview }] =
     useCreateReviewMutation();
 
-  const addToCartHandler = () => {};
+  const addToCartHandler = () => {
+    dispatch(addToCart({ ...product, qty }));
+    navigate("/cart");
+  };
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -75,7 +80,7 @@ const ProductDetails = () => {
                 className="w-full xl:w-[50rem] lg:w-[45rem] md:w-[30rem] sm:w-[20rem] mr-[2rem]"
               />
 
-              <HeartIcon product={product} />
+              {/* <HeartIcon product={product} /> */}
             </div>
 
             <div className="flex flex-col justify-between">

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
-import HeartIcon from "./HeartIcon";
+// import HeartIcon from "./HeartIcon.jsx.old";
 
 const Product = ({ product }) => {
   return (
@@ -12,7 +12,7 @@ const Product = ({ product }) => {
           className="w-[30rem] rounded"
         />
 
-        <HeartIcon product={product} />
+        {/* <HeartIcon product={product} /> */}
       </div>
       <div className="p-4">
         <Link to={`/product/${product.id}`}>
